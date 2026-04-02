@@ -1,15 +1,16 @@
 (function () {
   'use strict';
 
-  /* ── Read config from the script tag's data attributes ── */
-  const script = document.currentScript;
+  /* ── Read config from the script tag ── */
+  // We search for the script tag by its source URL since document.currentScript fails in modules
+  const script = document.querySelector('script[src*="pim-widget.js"]');
 
   const config = {
-    price:          parseFloat(script.dataset.pimPrice)           || 2985,
-    maxInstalments: parseInt(script.dataset.pimMaxInstalments)    || 24,
-    color:          script.dataset.pimColor                       || '#8b72d8',
-    minPrice:       parseFloat(script.dataset.pimMinPrice)        || 500,
-    maxPrice:       parseFloat(script.dataset.pimMaxPrice)        || 5000,
+    price:          parseFloat(script?.dataset?.pimPrice)           || 2985,
+    maxInstalments: parseInt(script?.dataset?.pimMaxInstalments)    || 24,
+    color:          script?.dataset?.pimColor                       || '#8b72d8',
+    minPrice:       parseFloat(script?.dataset?.pimMinPrice)        || 500,
+    maxPrice:       parseFloat(script?.dataset?.pimMaxPrice)        || 5000,
   };
 
   /* ── Helpers ── */
