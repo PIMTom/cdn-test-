@@ -5,11 +5,11 @@
 <h1 id="status">Waiting for script...</h1>
 <div data-acpim-widget></div>
 
-<script>
-  // This will tell us if the JS file is actually reachable
-  fetch('https://pimtom.github.io/cdn-test-/pim-widget.js')
-    .then(r => { if(r.ok) document.getElementById('status').innerText = "Script file found! Loading widget..."; })
-    .catch(e => { document.getElementById('status').innerText = "Cannot find pim-widget.js - check URL!"; });
+<script async type="module"
+  src="https://pimtom.github.io/cdn-test-/pim-widget.js"
+  data-pim-price="2985"
+  data-pim-max-instalments="24"
+  data-pim-color="#8b72d8">
 </script>
 </head>
 <body style="padding: 50px; font-family: sans-serif;">
