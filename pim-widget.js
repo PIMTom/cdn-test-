@@ -1,16 +1,19 @@
 (function () {
   'use strict';
 
-  // Find the script tag by looking for the filename in the src attribute
-  const script = document.querySelector('script[src*="pim-widget.js"]');
+  // 1. Try to find the script tag by its source name
+  // 2. If that fails, just use the first script tag it finds as a backup
+  const script = document.querySelector('script[src*="pim-widget"]') || document.currentScript;
 
   const config = {
-    price:          parseFloat(script?.dataset?.pimPrice)           || 2985,
-    maxInstalments: parseInt(script?.dataset?.pimMaxInstalments)    || 24,
-    color:          script?.dataset?.pimColor                       || '#8b72d8',
-    minPrice:       parseFloat(script?.dataset?.pimMinPrice)        || 500,
-    maxPrice:       parseFloat(script?.dataset?.pimMaxPrice)        || 5000,
+    price:          parseFloat(script?.dataset?.pimPrice || 2985),
+    maxInstalments: parseInt(script?.dataset?.pimMaxInstalments || 24),
+    color:          script?.dataset?.pimColor || '#8b72d8',
+    minPrice:       parseFloat(script?.dataset?.pimMinPrice || 500),
+    maxPrice:       parseFloat(script?.dataset?.pimMaxPrice || 5000),
   };
+
+  console.log("Widget Config Loaded:", config); // This will show in your Edge Console (F12)
   /* ── Helpers ── */
   const fmt = n => '£' + Number(n).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
