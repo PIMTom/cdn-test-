@@ -1,8 +1,7 @@
 (function () {
   'use strict';
 
-  /* ── Read config from the script tag ── */
-  // We search for the script tag by its source URL since document.currentScript fails in modules
+  // Find the script tag by looking for the filename in the src attribute
   const script = document.querySelector('script[src*="pim-widget.js"]');
 
   const config = {
@@ -12,7 +11,6 @@
     minPrice:       parseFloat(script?.dataset?.pimMinPrice)        || 500,
     maxPrice:       parseFloat(script?.dataset?.pimMaxPrice)        || 5000,
   };
-
   /* ── Helpers ── */
   const fmt = n => '£' + Number(n).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
